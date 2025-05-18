@@ -17,6 +17,7 @@
 #define HAL_BOARD_ESP32	   12
 #define HAL_BOARD_QURT     13
 #define HAL_BOARD_EMPTY    99
+
 // @LoggerEnumEnd
 
 // @LoggerEnum: HAL_BOARD_SUBTYPE
@@ -47,6 +48,7 @@
 #define HAL_BOARD_SUBTYPE_LINUX_VNAV       1024
 #define HAL_BOARD_SUBTYPE_LINUX_OBAL_V1    1025
 #define HAL_BOARD_SUBTYPE_LINUX_CANZERO    1026
+#define HAL_BOARD_SUBTYPE_LINUX_AQUAPILOT  1027
 
 /* HAL CHIBIOS sub-types, starting at 5000
 
