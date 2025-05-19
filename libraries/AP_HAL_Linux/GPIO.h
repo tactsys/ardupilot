@@ -22,6 +22,8 @@ private:
 
 #if HAL_LINUX_GPIO_BBB_ENABLED
 #include "GPIO_BBB.h"
+#elif HAL_LINUX_GPIO_AQUAPILOT_ENABLED
+#include "GPIO_AquaPilot.h"
 #elif HAL_LINUX_GPIO_NAVIGATOR_ENABLED
 #include "GPIO_Navigator.h"
 #elif HAL_LINUX_GPIO_RPI_ENABLED

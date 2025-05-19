@@ -1,0 +1,72 @@
+# hwdef.dat for AQUAPILOT Linux board by Tactical Systems
+# Board metadata
+# BOARD_NAME AQUAPILOT
+# BOARD_TYPE LINUX
+# SUBTYPE HAL_BOARD_SUBTYPE_LINUX_AQUAPILOT
+
+# Storage directories
+# define HAL_BOARD_LOG_DIRECTORY "/home/tactos/ardupilot/logs"
+# define HAL_BOARD_TERRAIN_DIRECTORY "/home/tactos/ardupilot/terrain"
+# define HAL_BOARD_STORAGE_DIRECTORY "/home/tactos/ardupilot"
+# define HAL_PARAM_DEFAULTS_PATH "/home/tactos/ardupilot.parm"
+
+# Sensor probes
+# Magnetometer: RM3100 via SPI
+#define HAL_MAG_PROBE_LIST PROBE_MAG_SPI(RM3100, "rm3100", false, ROTATION_NONE)
+COMPASS RM3100 SPI:rm3100 false ROTATION_NONE
+
+# IMU: Invensensev3 via I2C
+#define HAL_INS_PROBE_LIST PROBE_IMU_I2C(Invensensev3, 1, 0x68, ROTATION_NONE)
+IMU Invensensev3 I2C:1:0x68 ROTATION_NONE
+define INS_MAX_INSTANCES 3
+
+# Barometer: MS5611 via I2C
+#define HAL_BARO_PROBE_LIST PROBE_BARO_I2C(MS56XX, 5, 0x77, AP_Baro_MS56XX::BARO_MS5611)
+BARO MS5611 I2C:5:0x77
+
+# Compass order and rotation
+#define HAL_COMPASS_ORDER_ROTATION { 0 }
+
+# Disable external I2C compasses
+#define HAL_PROBE_EXTERNAL_I2C_COMPASSES 0
+
+# GPIO pin definitions for LEDs
+define HAL_GPIO_A_LED_PIN 27
+define HAL_GPIO_B_LED_PIN 22
+define HAL_GPIO_C_LED_PIN 4
+define HAL_GPIO_LED_ON 1
+define HAL_GPIO_LED_OFF 0
+
+#define HAL_BATT_VOLT_PIN                  5
+#define HAL_BATT_CURR_PIN                  6
+#define HAL_BATT_VOLT_SCALE                10.1f
+#define HAL_BATT_CURR_SCALE                17.0f
+
+# RC Input Configuration (SBUS via UART)
+define HAL_RCIN_UART_DEVICE "/dev/ttyAMA3"
+
+# PWM Output Configuration
+# define HAL_RCOUT_PWM_ENABLED 1
+# PWM pins (commented out in original, so we'll define with defaults or omit if not needed)
+# define HAL_RCOUT_PWM_PINS { 18, 19 }
+# define HAL_PWM_COUNT 2
+
+# CAN Support:
+env WITH_CAN 1
+define HAL_NUM_CAN_IFACES 1
+
+define HAL_CAN_DRIVER_DEFAULT 1
+
+#GPIO 
+define HAL_LINUX_GPIO_RPI_ENABLED 1
+define HAL_LINUX_GPIO_AQUAPILOT_ENABLED 1
+
+# Enable Linux-specific features
+#define HAL_LOGGING_FILESYSTEM 1
+
+#            NAME      BUS SUBDEV MODE        BPW CS_PIN         LOWSPD HIGHSPD
+LINUX_SPIDEV "rm3100"   0   0      SPI_MODE_0 8   SPI_CS_KERNEL  1*MHZ  1*MHZ
+LINUX_SPIDEV "mcp2515"  0   1      SPI_MODE_0 8   SPI_CS_KERNEL  1*MHZ  1*MHZ
+
+FIXME: use of this define should go away:
+define CONFIG_HAL_BOARD_SUBTYPE HAL_BOARD_SUBTYPE_LINUX_AQUAPILOT
