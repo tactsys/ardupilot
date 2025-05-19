@@ -223,7 +223,7 @@ static RCOutput_PCA9685 rcoutDriver(i2c_mgr_instance.get_device_ptr(1, PCA9685_P
 #elif CONFIG_HAL_BOARD_SUBTYPE == HAL_BOARD_SUBTYPE_LINUX_CANZERO
 static RCOutput_Sysfs rcoutDriver(0, 0, 2);
 #elif CONFIG_HAL_BOARD_SUBTYPE == HAL_BOARD_SUBTYPE_LINUX_AQUAPILOT
-static RCOutput_PCA9685 rcoutDriver(i2c_mgr_instance.get_device(5, PCA9685_PRIMARY_ADDRESS), 0, 0, RPI_GPIO_<26>());
+static RCOutput_PCA9685 rcoutDriver(i2c_mgr_instance.get_device_ptr(5, PCA9685_PRIMARY_ADDRESS), 0, 0, RPI_GPIO_<26>());
 #else
 static Empty::RCOutput rcoutDriver;
 #endif
